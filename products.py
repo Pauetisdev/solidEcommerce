@@ -42,13 +42,13 @@ class Product(ABC):
     def calculate(self, quantity: int) -> float:
         pass
 
-class FisicProduct(Product, ShippableInterface, GiftWrapInterface):
+class PhysicalProduct(Product, ShippableInterface, GiftWrapInterface):
 
     def calculate(self, quantity: int) -> float:
         return self.unit_price * quantity
 
-    def ship_cost(self, quantitat: int)-> float:
-        return 5.0 + (1.5 * quantitat)
+    def ship_cost(self, quantity: int)-> float:
+        return 5.0 + (1.5 * quantity)
 
     def add_wrap(self):
         return 3.50
@@ -62,18 +62,18 @@ class DigitalProduct(Product):
             return total_price * (1 - discount)
         return total_price
 
-class ProductePerible(Product, ShippableInterface): # Producte fresc
+class PerishableProduct(Product, ShippableInterface): # Producte fresc
 
-    def __init__(self, sku: str, name: str, unit_price: float, stock: int, caaducity_days: int):
+    def __init__(self, sku: str, name: str, unit_price: float, stock: int, caducity_days: int):
         super().__init__(sku, name, unit_price, stock)
-        self.__caducity_days = caaducity_days
+        self._caducity_days = caducity_days
 
     def calculate(self, quantity: int) -> float:
         total_price = self.unit_price * quantity
         discount = 0.30
-        if self.__caducity_days <= 2:
+        if self._caducity_days <= 2:
             return total_price * (1- discount)
         return total_price
 
-    def ship_cost(self, quantitat: int)-> float:
-        return quantitat * 2.50
+    def ship_cost(self, quantity: int)-> float:
+        return quantity * 2.50
