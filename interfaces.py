@@ -14,3 +14,8 @@ class CalculateTaxesInterface(ABC):
     @abstractmethod
     def apply_tax(self, subtotal: float, country_code: str) -> float:
         pass
+
+class RegisterInterface(ABC):
+    @abstractmethod
+    def log_operation(self, order_details: dict):
+        pass
