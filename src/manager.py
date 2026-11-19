@@ -6,7 +6,8 @@ class OrderManager:
         self._log = log
 
     def process_order(self, cart: list[tuple[Product, int]], country_code: str, is_present: bool = False ) -> dict:
-
+        """Validate stock, calculate totals with taxes, update inventory, and log the order."""
+        
         for product, qtt in cart:
             if product.stock < qtt:
                 raise ValueError("There isn't enought stock")

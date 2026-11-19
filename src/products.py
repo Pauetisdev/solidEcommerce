@@ -56,6 +56,8 @@ class PhysicalProduct(Product, ShippableInterface, GiftWrapInterface):
 class DigitalProduct(Product):
 
     def calculate(self, quantity: int) -> float:
+        """Apply a 15% discount when purchasing 3 or more units."""
+        
         total_price = self.unit_price * quantity
         discount = 0.15
         if quantity >= 3:
@@ -69,6 +71,8 @@ class PerishableProduct(Product, ShippableInterface): # Producte fresc
         self._caducity_days = caducity_days
 
     def calculate(self, quantity: int) -> float:
+        """Apply a 30% discount if expiry is within 2 days."""
+
         total_price = self.unit_price * quantity
         discount = 0.30
         if self._caducity_days <= 2:
