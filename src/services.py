@@ -14,7 +14,7 @@ class WithoutTaxes(CalculateTaxesInterface):
 
 class RegisterConsole(RegisterInterface):
     def log_operation(self, order_details: dict):
-        print("NEW ORDER REGISTERED")
+        print("\nNEW ORDER REGISTERED")
         for k, v in order_details.items():
             print(f"{k}: {v}")
 
